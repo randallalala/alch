@@ -1,0 +1,18 @@
+{% extends "cocktails/base.html" %}
+<!--  -->
+
+{% block content %}
+
+<h1>Cocktails</h1>
+{% for cocktail in cocktails %}
+<h3>{{cocktail.name}}</h3>
+<p>{{cocktail.ingredients}} | {{cocktail.notes}}</p>
+<p>{{cocktail.alcohol_content}}</p>
+{% endfor %}
+
+{% endblock content %}
+
+
+
+
+    

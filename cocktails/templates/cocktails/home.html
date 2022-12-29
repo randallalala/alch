@@ -5,9 +5,16 @@
 
 <h1>Cocktails</h1>
 {% for cocktail in cocktails %}
-<h3>{{cocktail.name}}</h3>
-<p>{{cocktail.ingredients}} | {{cocktail.notes}}</p>
-<p>{{cocktail.alcohol_content}}</p>
+
+<div class="card my-4" style="width: 18rem;">
+    <!-- <img src="..." class="card-img-top" alt="..."> -->
+    <div class="card-body">
+      <h5 class="card-title"> {{cocktail.name}} </h5>
+      <p class="card-text"> {{cocktail.ingredients}} | {{cocktail.notes}} | {{cocktail.alcohol_content}} </p>
+      <a href="#" class="btn btn-primary"> More info </a>
+    </div>
+  </div>
+
 {% endfor %}
 
 {% endblock content %}

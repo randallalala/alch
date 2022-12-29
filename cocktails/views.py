@@ -21,7 +21,7 @@ def home(request):
     context = {
         'cocktails': cocktails
     }
-    return render(request, 'cocktails/home.html', context)
+    return render(request, "cocktails/home.html", context)
 
 def about(request):
     return render(request, "cocktails/about.html",)

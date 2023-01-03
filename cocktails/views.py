@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from . import models
 
 
 cocktails = [
@@ -11,13 +12,14 @@ cocktails = [
   {
     'name': 'bloody mary',
     'ingredients': 'tomato',
-    'notes': 'ded',
+    'notes': 'ded', 
     'alcohol_content': '55%'
   }
 ]
 
 
 def home(request):
+    cocktails = models.Cocktail.objects.all()
     context = {
         'cocktails': cocktails
     }

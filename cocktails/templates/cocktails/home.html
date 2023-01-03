@@ -11,7 +11,8 @@
     <div class="card-body">
       <h5 class="card-title"> {{cocktail.name}} </h5>
       <p class="card-text"> {{cocktail.ingredients}} | {{cocktail.notes}} | {{cocktail.alcohol_content}} </p>
-      <a href="#" class="btn btn-primary"> More info </a>
+      <h6 class="card-subtitle mb-2 text-muted"> {{cocktail.author}} </h6>
+      <a href="{% url 'cocktails-detail' cocktail.pk %}" class="card-link">More info</a>
     </div>
   </div>
 

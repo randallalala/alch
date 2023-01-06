@@ -5,6 +5,8 @@ $ python3 manage.py shell
 $ python3 manage.py startapp users    # for user login app that can be resused
 $ pip install django-crispy-forms
 $ python3 manage.py createsuperuser     # randallala pn19
+$ pip install django-mathfilters (cocktail-detail.html)
+
 
 % ADD APPS  
 INSTALLED_APPS = [

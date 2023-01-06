@@ -6,7 +6,9 @@
   <div class="card-body">
     <h5 class="card-title">{{ object.name }}</h5>
     <h6 class="card-subtitle mb-2 text-muted">{{ object.author }}</h6>
-    <p class="card-text"> {{cocktail.ingredients}} | {{cocktail.notes}} | {{cocktail.alcohol_content}} </p>
+    <p class="card-text"> {{object.ingredients}} | {{object.notes}} | {{object.alcohol_content}} </p>
+
+
   </div>
 </div>
 {% if object.author == user or user.is_staff %}
@@ -17,3 +19,6 @@
 {% endif %}
 <!-- -->
 {% endblock content %}
+
+p1 = Ingredient(name='lemon', alcohol_content='2',uom='pieces')
+p1.save()

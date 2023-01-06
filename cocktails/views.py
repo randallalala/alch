@@ -105,14 +105,14 @@ class IngredientDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     return self.request.user == ingredient.author
 class IngredientCreateView(LoginRequiredMixin, CreateView):
   model = models.Ingredient
-  fields = ['name', 'alcohol_content', 'uom']
+  fields = ['name', 'alcohol_content', 'uom', 'quantity']
 # alcohol_content
   def form_valid(self, form):
     form.instance.author = self.request.user
     return super().form_valid(form)
 class IngredientUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
   model = models.Ingredient
-  fields = ['name', 'alcohol_content', 'uom', ]
+  fields = ['name', 'alcohol_content', 'uom', 'quantity']
   def test_func(self):
     ingredient = self.get_object()
     return self.request.user == ingredient.author

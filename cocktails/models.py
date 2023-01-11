@@ -1,8 +1,15 @@
+
+import pathlib
+import pint
+import uuid
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.core.validators import MinValueValidator, MaxValueValidator
+# from django import pint
 # from decimal import Decimal
+
 
 PERCENTAGE_VALIDATOR = [MinValueValidator(0), MaxValueValidator(100)]
 
@@ -20,7 +27,6 @@ class Quantity(models.Model):
   
 class Ingredient(models.Model):
   name = models.TextField(unique=True)
-  # uom = models.ManyToManyField(UOM)
   alcohol_content = models.DecimalField(max_digits=3, decimal_places=0, validators=PERCENTAGE_VALIDATOR, blank=False)
   def __str__(self):
     return self.name
@@ -32,7 +38,6 @@ class Cocktail(models.Model):
   uom = models.ForeignKey(UOM, on_delete=models.SET_NULL, blank=True, null=True) 
   quantity = models.ForeignKey(Quantity, on_delete=models.SET_NULL, blank=True, null=True)
   ingredients = models.ForeignKey(Ingredient, on_delete=models.SET_NULL, blank=True, null=True) 
-  # ingredients = models.ForeignKey(Ingredient, on_delete=models.SET_NULL, blank=True, null=True) 
   author = models.ForeignKey(User, on_delete=models.CASCADE) 
   def get_absolute_url(self):
     return reverse("cocktails-detail", kwargs={"pk": self.pk})

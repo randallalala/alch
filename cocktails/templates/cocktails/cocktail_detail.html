@@ -16,9 +16,5 @@
     <a class="btn btn-outline-info" href="{% url 'cocktails-update' object.id %}">Update</a>
     <a class="btn btn-outline-danger" href="{% url 'cocktails-delete' object.id %}">Delete</a>
 </div>
-{% endif %}
-<!-- -->
+{% endif %} 
 {% endblock content %}
-
-p1 = Ingredient(name='lemon', alcohol_content='2',uom='pieces')
-p1.save()

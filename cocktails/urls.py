@@ -27,9 +27,6 @@ urlpatterns = [
     path('cocktail/<int:pk>/delete', views.CocktailDeleteView.as_view(), name="cocktails-delete"),
     path('about/', views.about, name="cocktails-about"),
     
-    path('search', views.detail_view, name="detail"),
-    path('results', views.detail_view, name="results"),
-    path('search/<int:id>', views.search_view, name="cocktails-search"),
     
     path('uom/<int:pk>', views.UomDetailView.as_view(), name="uoms-detail"),
     path('uom/create', views.UomCreateView.as_view(), name="uoms-create"),
@@ -41,10 +38,13 @@ urlpatterns = [
     path('ingredient/<int:pk>/update', views.IngredientUpdateView.as_view(), name="ingredients-update"),
     path('ingredient/<int:pk>/delete', views.IngredientDeleteView.as_view(), name="cocktails-delete"),
 
+    # path('results', views.detail_view, name="results"),
 # 
 
     # path("", home_view),
-    # path("cocktails/<int:id>/", home_view ),
+    path("cocktails/<int:id>/", views.cocktail_detail_view ),
+    path('search', views.cocktail_search_view, name="search"),
+    # path('search/<int:id>', views.search_view, name="cocktails-search"),
     # path("", cocktail_list_view, name='list'),
     # path("create/", cocktail_create_view, name='create'),
     

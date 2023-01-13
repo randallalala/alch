@@ -2,21 +2,6 @@
 
 {% block content %}
 
-<h1>Cocktails</h1>
-{% for cocktail in cocktails %}
-
-<div class="card my-4" style="width: 18rem;">
-    <!-- <img src="..." class="card-img-top" alt="...">  -->
-    <div class="card-body">
-      <h5 class="card-title"> {{cocktail.name}} </h5>
-      <p class="card-text"> {{cocktail.ingredients}} | {{cocktail.notes}} | {{cocktail.alcohol_content}} </p>
-      
-      <h6 class="card-subtitle mb-2 text-muted"> {{cocktail.author}} </h6>
-      <a href="{% url 'cocktails-detail' cocktail.pk %}" class="card-link">More info</a>
-    </div>
-  </div>
-  
-  {% endfor %}
   
   <ul>
 {% for x in object_list %}

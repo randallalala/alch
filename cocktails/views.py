@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.template.loader import render_to_string
 from cocktails.models import Cocktail
+from .models import Cocktail
 
 
 from . import models
@@ -135,10 +136,14 @@ def about(request):
 # >>> Author.objects.filter(name__contains='Terry')
 
 
-def search_view(request):
+def cocktail_search_view(request):
   print(dir(request))
   query_dict = dict(request.GET)
   query = query_dict.get("query")
+  try:
+    query=int()
+  except:
+    query = None
   cocktail_obj = None
   if query is not None:
     cocktail_obj = Cocktail.objects.get(id=query)
@@ -146,12 +151,14 @@ def search_view(request):
   return render(request, "cocktails/search.html", context=context)
     #  "cocktail/search.html"
     
-def detail_view(request, id=None):
+def cocktail_detail_view(request, id=None):
   cocktail_obj = None
-  context = { "object": cocktail_obj }
-  return render(request, "cocktails/search.html", context=context)
+  if id is not None:
+    cocktail_obj = Cocktail_objects.get(id=id)
+  context = { "object": cocktail_obj, }
+  return render(request, "cocktails/cocktail_detail.html", context=context)
 
-def home_view(request, id, *args , **kwargs ):
+def home_view(request, *args , **kwargs ):
   print(args, kwargs)
   cocktail_obj = Cocktail.objects.get(id=2)
   cocktail_queryset = Cocktail.objects.all()

@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.core.validators import MinValueValidator, MaxValueValidator
 # from django import pint
 # from decimal import Decimal
+from django.utils.text import slugify
 
 
 PERCENTAGE_VALIDATOR = [MinValueValidator(0), MaxValueValidator(100)]
@@ -33,6 +34,7 @@ class Ingredient(models.Model):
 
 class Cocktail(models.Model):
   name = models.CharField(max_length=100, unique=True)
+  slug = models.SlugField(blank=True, null=True)
   notes = models.TextField(blank=True)
   # ingredients = models.ManyToManyField(Ingredient)
   uom = models.ForeignKey(UOM, on_delete=models.SET_NULL, blank=True, null=True) 
@@ -43,7 +45,10 @@ class Cocktail(models.Model):
     return reverse("cocktails-detail", kwargs={"pk": self.pk})
   def __str__(self):
     return self.name
-
+  def save(self, *args, **kwargs):
+    if self.slug is None:
+      self.slug = slugify(self.name)
+    super().save(*args, **kwargs)
 
   # DELETE CASCADE - IF USER DELETED, DELETE ALL COCKTAILS
 #   created_at = models.DateTimeField(auto_now_add=True)

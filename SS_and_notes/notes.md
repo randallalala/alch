@@ -6,7 +6,8 @@ $ python3 manage.py startapp users    # for user login app that can be resused
 $ pip install django-crispy-forms
 $ python3 manage.py createsuperuser     # randallala pn19
 $ pip install django-mathfilters (cocktail-detail.html)
-
+$ pip install -r requirements.txt       # after activating venv
+$ python3 manage.py test     
 
 % ADD APPS  
 INSTALLED_APPS = [
@@ -18,3 +19,10 @@ INSTALLED_APPS = [
 
 % links
 - /admin #to go into admin section
+
+features / done / learnt
+- users and auth
+- many to many (ingre / alch / uom)
+- tests
+- searches
+- slugify

@@ -40,10 +40,11 @@ urlpatterns = [
 
     # path('results', views.detail_view, name="results"),
 # 
-
+# int / str - for id matters
     # path("", home_view),
+    path("cocktails/", views.cocktail_search_view ),
     path("cocktails/<int:id>/", views.cocktail_detail_view ),
-    path('search', views.cocktail_search_view, name="search"),
+    # path('search', views.cocktail_search_view, name="search"),
     # path('search/<int:id>', views.search_view, name="cocktails-search"),
     # path("", cocktail_list_view, name='list'),
     # path("create/", cocktail_create_view, name='create'),

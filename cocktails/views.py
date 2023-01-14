@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.template.loader import render_to_string
 from cocktails.models import Cocktail
 from .models import Cocktail
+from .forms import CocktailForm
 
 
 from . import models
@@ -49,14 +50,14 @@ class CocktailDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     return self.request.user == cocktail.author
 class CocktailCreateView(LoginRequiredMixin, CreateView):
   model = models.Cocktail
-  fields = ['name', 'notes', 'ingredients']
+  fields = ['name', 'notes', 'ingredients', 'alcohol_content']
 # alcohol_content
   def form_valid(self, form):
     form.instance.author = self.request.user
     return super().form_valid(form)
 class CocktailUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
   model = models.Cocktail
-  fields = ['name', 'notes', 'ingredients', 'alcohol_content' ]
+  fields = ['name', 'notes', 'ingredients', 'alcohol_content']
   def test_func(self):
     cocktail = self.get_object()
     return self.request.user == cocktail.author
@@ -135,13 +136,43 @@ def about(request):
 # https://docs.djangoproject.com/en/4.1/topics/db/search/
 # >>> Author.objects.filter(name__contains='Terry')
 
+# @login_required
+# def cocktail_create_view(request):
+#     form = ArticleForm(request.POST or None)
+#     context = {
+#         "form": form
+#     }
+#     if form.is_valid():
+#         cocktail_object = form.save()
+#         context['form'] = ArticleForm()
+#         # return redirect("cocktail-detail", slug=cocktail_object.slug)
+#         return redirect(cocktail_object.get_absolute_url())
+#         # context['object'] = cocktail_object
+#         # context['created'] = True
+#     return render(request, "cocktails/create.html", context=context)
+
+# def cocktail_create_view(request):
+#     # print(request.POST)
+#     form = ArticleForm()
+#     context = {
+#         "form": form
+#     }
+#     if request.method == "POST":
+#         form = ArticleForm(request.POST)
+#         context['form'] = form
+#         if form.is_valid():
+#             name = form.cleaned_data.get("name")
+#             cocktail_object = Article.objects.create(name=name)
+#             context['object'] = cocktail_object
+#             context['created'] = True
+#     return render(request, "cocktails/create.html", context=context)
 
 def cocktail_search_view(request):
   print(dir(request))
   query_dict = dict(request.GET)
   query = query_dict.get("query")
   try:
-    query=int()
+    query=int(query_dict.get("q"))
   except:
     query = None
   cocktail_obj = None

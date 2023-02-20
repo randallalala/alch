@@ -8,6 +8,7 @@ $ python3 manage.py createsuperuser     # randallala pn19
 $ pip install django-mathfilters (cocktail-detail.html)
 $ pip install -r requirements.txt       # after activating venv
 $ python3 manage.py test     
+$ python3 manage.py test cocktails      # only test cocktail model
 
 % ADD APPS  
 INSTALLED_APPS = [

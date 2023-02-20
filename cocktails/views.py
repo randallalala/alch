@@ -70,32 +70,32 @@ def about(request):
 
 
 
-class UomDetailView(DetailView):
-  model = models.UOM
-class UomDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-  model = models.UOM
-  success_url = reverse_lazy('uoms-home')
-  def test_func(self):
-    uom = self.get_object()
-    return self.request.user == uom.author
-class UomCreateView(LoginRequiredMixin, CreateView):
-  model = models.UOM
-  fields = ['uom']
-  def form_valid(self, form):
-    form.instance.author = self.request.user
-    return super().form_valid(form)
-class UomUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-  model = models.UOM
-  fields = ['uom' ]
-  def test_func(self):
-    uom = self.get_object()
-    return self.request.user == uom.author
-  def form_valid(self, form):
-    form.instance.author = self.request.user
-    return super().form_valid(form)
-def about(request):
-    return render(request, "uoms/about.html",)
-  # {'name':'about us page'}
+# class UomDetailView(DetailView):
+#   model = models.UOM
+# class UomDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+#   model = models.UOM
+#   success_url = reverse_lazy('uoms-home')
+#   def test_func(self):
+#     uom = self.get_object()
+#     return self.request.user == uom.author
+# class UomCreateView(LoginRequiredMixin, CreateView):
+#   model = models.UOM
+#   fields = ['uom']
+#   def form_valid(self, form):
+#     form.instance.author = self.request.user
+#     return super().form_valid(form)
+# class UomUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+#   model = models.UOM
+#   fields = ['uom' ]
+#   def test_func(self):
+#     uom = self.get_object()
+#     return self.request.user == uom.author
+#   def form_valid(self, form):
+#     form.instance.author = self.request.user
+#     return super().form_valid(form)
+# def about(request):
+#     return render(request, "uoms/about.html",)
+#   # {'name':'about us page'}
 
 
 
